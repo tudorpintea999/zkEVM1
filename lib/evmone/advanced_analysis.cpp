@@ -57,7 +57,7 @@ AdvancedCodeAnalysis analyze(evmc_revision rev, bytes_view code) noexcept
     analysis.instrs.emplace_back(opx_beginblock_fn);
     auto block = BlockAnalysis{0};
 
-    // TODO: Iterators are not used here because because push_end may point way outside of code
+    // TODO: Iterators are not used here because push_end may point way outside of code
     //       and this is not allowed and MSVC will detect it with instrumented iterators.
     const auto code_begin = code.data();
     const auto code_end = code_begin + code.size();
@@ -148,7 +148,7 @@ AdvancedCodeAnalysis analyze(evmc_revision rev, bytes_view code) noexcept
             const auto push_value_bytes = intx::as_bytes(push_value);
             auto insert_pos = &push_value_bytes[push_size - 1];
 
-            // Copy bytes to the deticated storage in the order to match native endianness.
+            // Copy bytes to the dedicated storage in the order to match native endianness.
             // The condition `code_pos < code_end` is to handle the edge case of PUSH being at
             // the end of the code with incomplete value bytes.
             // This condition can be replaced with single `push_end <= code_end` done once before
